@@ -42,7 +42,6 @@ export async function getTransferAuthorizationSignature(
     const signature = await senderWallet.signTypedData(domain, types, message);
     const { v, r, s } = ethers.Signature.from(signature);
 
-    // Chuyển BigInt sang string để JSON hóa
     return {
         v,
         r,

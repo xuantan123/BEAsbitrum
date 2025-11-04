@@ -1,13 +1,15 @@
 import express from "express";
-import { signTransfer } from "../controllers/test2_signMessage.js";
-import { signSell } from "../controllers/test_signSell.js";
+import { executeAuthorizedTransfer , checkBalanceMeme } from "../controllers/test2_signMessage.js";
+import { createSignaturePayload } from "../controllers/signatureController.js";
 
 const router = express.Router();
 
 router.get("/hello", (req, res) => {
     res.send("Hello World");
   });
-  router.post("/sign-transfer", signTransfer);
-  router.post("/sign-sell",signSell);
+  router.post("/executeAuthorizedTransfer",executeAuthorizedTransfer);
+  router.post("/checkBalanceMeme",checkBalanceMeme);
+  router.post("/payload", createSignaturePayload);
+
 
 export default router;
