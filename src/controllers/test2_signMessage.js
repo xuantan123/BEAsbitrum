@@ -79,6 +79,10 @@ export const checkBalanceMeme = async (req, res) => {
         const formattedSaleAllocation = ethers.formatUnits(SALE_ALLOCATION, 18);
         console.log("Sale Allocation:", formattedSaleAllocation);
 
+        const TOKENS_PER_USD = await Token.TOKENS_PER_USD();
+        const formattedTOKENS_PER_USD = ethers.formatUnits(TOKENS_PER_USD,12);
+        console.log("TOKENS_PER_USD:",formattedTOKENS_PER_USD);
+
         const USDCCollected = await Token.wUSDCCollected();
         const formattedUSDCCollected = ethers.formatUnits(USDCCollected, 6);
         console.log("USDCCollected:", formattedUSDCCollected);
@@ -97,6 +101,7 @@ export const checkBalanceMeme = async (req, res) => {
         console.log("Contract Balance:  ", formattedBalance);
         console.log("Tokens Sold:       ", formattedTokensSold);
         console.log("Sale Allocation: ", formattedSaleAllocation);  //Max 
+        console.log("Tokens Per USC:", formattedTOKENS_PER_USD); // 1 usdc = 6000 meme
         console.log("USDC Collected:   ", formattedUSDCCollected);
 
         res.json({
@@ -107,6 +112,7 @@ export const checkBalanceMeme = async (req, res) => {
                 contractBalance: formattedBalance,
                 tokensSold: formattedTokensSold,
                 SALE_ALLOCATION: formattedSaleAllocation,
+                TOKENS_PER_USD: formattedTOKENS_PER_USD,
                 USDCCollected: formattedUSDCCollected
             },
         });
@@ -119,7 +125,7 @@ export const checkBalanceMeme = async (req, res) => {
 export const checkBalanceUser = async (req, res) => {
     try {
         const { user } = req.body
-        console.log("Token address:", TokenAddress);
+        console.log("User address:", user);
 
         const userWUSDCDeposited = await Token.userWUSDCDeposited(user);
         const formatteduserWUSDCDeposited = ethers.formatUnits(userWUSDCDeposited, 6);
