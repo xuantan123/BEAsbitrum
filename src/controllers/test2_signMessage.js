@@ -67,7 +67,6 @@ export const executeAuthorizedTransfer = async (req, res) => {
 
 export const checkBalanceMeme = async (req, res) => {
     try {
-        const { user } = req.body
         console.log("Token address:", TokenAddress);
 
         const MemeBalance = await Token.balanceOf(TokenAddress);
@@ -85,10 +84,6 @@ export const checkBalanceMeme = async (req, res) => {
         console.log("USDCCollected:", formattedUSDCCollected);
 
 
-        const userWUSDCDeposited = await Token.userWUSDCDeposited(user);
-        const formatteduserWUSDCDeposited = ethers.formatUnits(userWUSDCDeposited, 6);
-        console.log("userWUSDCDeposited:", formatteduserWUSDCDeposited);
-
         let tokensSold = 0;
         try {
             tokensSold = await Token.tokensSold();
@@ -103,7 +98,6 @@ export const checkBalanceMeme = async (req, res) => {
         console.log("Tokens Sold:       ", formattedTokensSold);
         console.log("Sale Allocation: ", formattedSaleAllocation);  //Max 
         console.log("USDC Collected:   ", formattedUSDCCollected);
-        console.log("userWUSDCDeposited:   ", formatteduserWUSDCDeposited); // user buy usdc
 
         res.json({
             success: true,
@@ -113,7 +107,30 @@ export const checkBalanceMeme = async (req, res) => {
                 contractBalance: formattedBalance,
                 tokensSold: formattedTokensSold,
                 SALE_ALLOCATION: formattedSaleAllocation,
-                USDCCollected: formattedUSDCCollected,
+                USDCCollected: formattedUSDCCollected
+            },
+        });
+    } catch (err) {
+        console.error("❌ Error checking balance:", err);
+        res.status(500).json({ success: false, error: err.message });
+    }
+};
+
+export const checkBalanceUser = async (req, res) => {
+    try {
+        const { user } = req.body
+        console.log("Token address:", TokenAddress);
+
+        const userWUSDCDeposited = await Token.userWUSDCDeposited(user);
+        const formatteduserWUSDCDeposited = ethers.formatUnits(userWUSDCDeposited, 6);
+        console.log("userWUSDCDeposited:", formatteduserWUSDCDeposited);
+
+        console.log("userWUSDCDeposited:   ", formatteduserWUSDCDeposited); // user buy usdc
+
+        res.json({
+            success: true,
+            data: {
+                tokenAddress: TokenAddress,
                 userWUSDCDeposited: formatteduserWUSDCDeposited,
             },
         });
