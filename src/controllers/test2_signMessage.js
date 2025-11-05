@@ -127,7 +127,7 @@ export const checkBalanceUser = async (req, res) => {
         console.log("userWUSDCDeposited:   ", formatteduserWUSDCDeposited); // user buy usdc
 
         const tokenMint = await Token.balanceOf(user);
-        const TokenMint = ethers.formatUnits(tokenMint, 6);
+        const TokenMint = ethers.formatUnits(tokenMint, 18);
         console.log("Token Minted to User:", TokenMint);
 
         res.json({
