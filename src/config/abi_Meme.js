@@ -1,5 +1,41 @@
 export const abi_Meme = [
   {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "symbol",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_uri",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_creator",
+        "type": "address"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_executors",
+        "type": "address[]"
+      },
+      {
+        "internalType": "address",
+        "name": "_wUSDC",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
     "inputs": [],
     "name": "AccessControlBadConfirmation",
     "type": "error"
@@ -193,7 +229,7 @@ export const abi_Meme = [
   },
   {
     "inputs": [],
-    "name": "InvalidInitialization",
+    "name": "InvalidShortString",
     "type": "error"
   },
   {
@@ -214,11 +250,6 @@ export const abi_Meme = [
   {
     "inputs": [],
     "name": "NonceAlreadyUsed",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NotInitializing",
     "type": "error"
   },
   {
@@ -269,6 +300,17 @@ export const abi_Meme = [
     "type": "error"
   },
   {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "str",
+        "type": "string"
+      }
+    ],
+    "name": "StringTooLong",
+    "type": "error"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
@@ -316,19 +358,6 @@ export const abi_Meme = [
     "anonymous": false,
     "inputs": [],
     "name": "EIP712DomainChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint64",
-        "name": "version",
-        "type": "uint64"
-      }
-    ],
-    "name": "Initialized",
     "type": "event"
   },
   {
@@ -1092,44 +1121,6 @@ export const abi_Meme = [
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "symbol",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_uri",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_creator",
-        "type": "address"
-      },
-      {
-        "internalType": "address[]",
-        "name": "_executors",
-        "type": "address[]"
-      },
-      {
-        "internalType": "address",
-        "name": "_wUSDC",
-        "type": "address"
-      }
-    ],
-    "name": "initialize",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
