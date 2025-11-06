@@ -203,6 +203,16 @@ export const abi_Meme = [
   },
   {
     "inputs": [],
+    "name": "MaxTotalUSDCReached",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "MaxUSDCPerUserExceeded",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "NonceAlreadyUsed",
     "type": "error"
   },
@@ -625,6 +635,32 @@ export const abi_Meme = [
   {
     "inputs": [],
     "name": "LIQUIDITY_ALLOCATION",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_TOTAL_USDC",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_USDC_PER_USER",
     "outputs": [
       {
         "internalType": "uint256",
